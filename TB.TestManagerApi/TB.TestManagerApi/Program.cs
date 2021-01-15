@@ -10,9 +10,10 @@ using System.Threading.Tasks;
 namespace TB.TestManagerApi
 {
     public class Program
-    {
+    { 
         public static void Main(string[] args)
         {
+            //Testing git flow
             CreateHostBuilder(args).Build().Run();
         }
 
