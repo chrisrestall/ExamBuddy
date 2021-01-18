@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +11,13 @@ namespace TB.TestManagerApi.Services
     public class ExamStructureManager : IExamStructureManager
     {
         private IExamStructureQueries _examStructureQueries;
+        private IExamStructureCommands _examStructureCommands;
         private readonly ILogger<ExamStructureManager> _logger;
        
-        public ExamStructureManager(IExamStructureQueries examStructureQueries, ILogger<ExamStructureManager> logger)
+        public ExamStructureManager(IExamStructureQueries examStructureQueries, IExamStructureCommands examStructureCommands, ILogger<ExamStructureManager> logger)
         {
             _examStructureQueries = examStructureQueries;
+            _examStructureCommands = examStructureCommands;
             _logger = logger;          
         }
 
@@ -76,6 +77,19 @@ namespace TB.TestManagerApi.Services
                 throw;
             }
         }
+        public async Task<Guid> CreateExamMaster(ExamMaster examMaster)
+        {
+            try
+            {
+                var result = await _examStructureCommands.CreateExamMaster(examMaster).ConfigureAwait(false);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                throw;
+            }
+        }
 
         public async Task<IEnumerable<ExamQuestion>> FetchExamQuestionAnswersByQuestionMasterId(Guid examQuestionMasterId, bool activeOnly)
         {
@@ -119,7 +133,9 @@ namespace TB.TestManagerApi.Services
                 _logger.LogError(ex.ToString());
                 throw;
             }
-        }    
+        }
+
+        //IExamStructureCommands
 
     }
 }

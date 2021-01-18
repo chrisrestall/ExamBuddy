@@ -32,6 +32,7 @@ namespace TB.TestManagerApi
 
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
+            services.AddTransient<IExamMasterCommandService, ExamMasterCommandService>();
             services.AddTransient<IExamTypeMetaCommandService, ExamTypeMetaCommandService>();
             services.AddTransient<IExamTypeMetaQueryService, ExamTypeMetaQueryService>();
             services.AddTransient<IExamMasterQueryService, ExamMasterQueryService>();
@@ -40,7 +41,8 @@ namespace TB.TestManagerApi
             services.AddTransient<IExamStructureManager, ExamStructureManager>();
             services.AddTransient<IExamTypeMetaQueries, ExamTypeMetaQueries>();
             services.AddTransient<IExamTypeMetaCommands, ExamTypeMetaCommands>();
-            services.AddTransient<IExamStructureQueries, ExamStructureQueries>();    
+            services.AddTransient<IExamStructureQueries, ExamStructureQueries>();
+            services.AddTransient<IExamStructureCommands, ExamStructureCommands>();
             services.AddTransient<ISqlServerConnectionProvider, SqlServerConnectionProvider>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
