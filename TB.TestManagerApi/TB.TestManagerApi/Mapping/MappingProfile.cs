@@ -11,6 +11,8 @@ namespace TB.TestManagerApi.Mapping
             CreateMap<ExamMaster, ExamMasterDto>();
             CreateMap<ExamMasterDto, ExamMaster>();
             CreateMap<CreateExamMasterDto, ExamMaster>();
+            CreateMap<UpdateExamMasterDto, ExamMaster>();
+            CreateMap<DeactivateExamMasterDto, ExamMaster>();
             CreateMap<ExamTypeMeta, ExamTypeMetaDto>().ReverseMap();
             CreateMap<ExamTypeSection, ExamTypeSectionDto>().ReverseMap();
             CreateMap<CreateExamTypeMetaDto, ExamTypeMeta>();

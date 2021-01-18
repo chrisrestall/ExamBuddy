@@ -53,5 +53,61 @@ namespace TB.TestManagerApi.Repository
                 throw;
             }
         }
+
+        public async Task<Guid> UpdateExamMaster(ExamMaster examMaster)
+        {
+            Guid result;
+            try
+            {
+                using (var transaction = new TransactionScope(TransactionScopeOption.Required, TransactionScopeAsyncFlowOption.Enabled))
+                {
+                    using (var connection = _provider.GetDbConnection())
+                    {
+                        var command = @"UPDATE [ExamMaster] SET [name] = @name, [userId] = @userId, [active] = @active, [editDate] = @editDate ";
+                        command += "WHERE id = @id";
+
+                        _logger.LogDebug(command);
+                        await connection.ExecuteAsync(command, examMaster).ConfigureAwait(false);
+                        result = examMaster.Id;
+
+                        transaction.Complete();
+                    }
+                }
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                throw;
+            }
+        }
+        public async Task<Guid> DeactivateExamMaster(ExamMaster examMaster)
+        {
+            Guid result;
+            try
+            {
+                using (var transaction = new TransactionScope(TransactionScopeOption.Required, TransactionScopeAsyncFlowOption.Enabled))
+                {
+                    using (var connection = _provider.GetDbConnection())
+                    {
+                        var command = @"UPDATE [ExamMaster] SET [active] = 0, [editDate] = @editDate ";
+                        command += "WHERE id = @id";
+
+                        _logger.LogDebug(command);
+                        await connection.ExecuteAsync(command, examMaster).ConfigureAwait(false);
+                        result = examMaster.Id;
+                        transaction.Complete();
+                    }
+                }
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                throw;
+            }
+        }
     }
 }

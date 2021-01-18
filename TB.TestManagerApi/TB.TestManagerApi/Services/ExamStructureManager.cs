@@ -90,6 +90,32 @@ namespace TB.TestManagerApi.Services
                 throw;
             }
         }
+        public async Task<Guid> UpdateExamMaster(ExamMaster examMaster)
+        {
+            try
+            {
+                var result = await _examStructureCommands.UpdateExamMaster(examMaster).ConfigureAwait(false);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                throw;
+            }
+        }
+        public async Task<Guid> DeactivateExamMaster(ExamMaster examMaster)
+        {
+            try
+            {
+                var result = await _examStructureCommands.DeactivateExamMaster(examMaster).ConfigureAwait(false);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                throw;
+            }
+        }
 
         public async Task<IEnumerable<ExamQuestion>> FetchExamQuestionAnswersByQuestionMasterId(Guid examQuestionMasterId, bool activeOnly)
         {

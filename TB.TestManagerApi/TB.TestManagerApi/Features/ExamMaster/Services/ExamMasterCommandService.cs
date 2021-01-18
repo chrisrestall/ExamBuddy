@@ -34,5 +34,31 @@ namespace TB.TestManagerApi.Services
                 throw;
             }
         }
+        public async Task<Guid> UpdateExamMasterAsync(UpdateExamMasterDto updateExamMasterDto)
+        {
+            try
+            {
+                ExamMaster examMaster = _mapper.Map<ExamMaster>(updateExamMasterDto);
+                return await _examStructureManagerService.UpdateExamMaster(examMaster).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                throw;
+            }
+        }
+        public async Task<Guid> DeactivateExamTypeMetaAsync(DeactivateExamMasterDto deactivateExamMasterDto)
+        {
+            try
+            {
+                ExamMaster examMaster = _mapper.Map<ExamMaster>(deactivateExamMasterDto);
+                return await _examStructureManagerService.DeactivateExamMaster(examMaster).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                throw;
+            }
+        }
     }
 }
