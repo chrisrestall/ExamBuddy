@@ -23,7 +23,7 @@ namespace TB.TestManagerApi.Services
         {
             try
             {
-                List<ExamTypeSection> ets = _mapper.Map<List<ExamTypeSection>>(createExamTypeSectionDto);
+                List<CreateExamTypeSection> ets = _mapper.Map<List<CreateExamTypeSection>>(createExamTypeSectionDto);
                 return await _examTypeMetaManagerService.CreateExamTypeSections(ets).ConfigureAwait(false);
             }
             catch (Exception ex)
@@ -37,7 +37,7 @@ namespace TB.TestManagerApi.Services
         {
             try
             {
-                ExamTypeSection ets = _mapper.Map<ExamTypeSection>(createExamTypeSectionDto);
+                CreateExamTypeSection ets = _mapper.Map<CreateExamTypeSection>(createExamTypeSectionDto);
                 return await _examTypeMetaManagerService.CreateExamTypeSection(ets).ConfigureAwait(false);
             }
             catch (Exception ex)
@@ -51,7 +51,7 @@ namespace TB.TestManagerApi.Services
         {
             try
             {
-                ExamTypeMeta etm = _mapper.Map<ExamTypeMeta>(createExamTypeMetaDto);
+                CreateExamTypeMeta etm = _mapper.Map<CreateExamTypeMeta>(createExamTypeMetaDto);
 
                 return await _examTypeMetaManagerService.CreateExamTypeMeta(etm).ConfigureAwait(false);
             }
@@ -65,7 +65,7 @@ namespace TB.TestManagerApi.Services
         {
             try
             {
-                ExamTypeMeta etm = _mapper.Map<ExamTypeMeta>(deactivateExamTypeMetaDto);
+                DeactivateExamTypeMeta etm = _mapper.Map<DeactivateExamTypeMeta>(deactivateExamTypeMetaDto);
                 return await _examTypeMetaManagerService.DeactivateExamTypeMeta(etm).ConfigureAwait(false);
             }
             catch (Exception ex)
@@ -79,7 +79,7 @@ namespace TB.TestManagerApi.Services
         {
             try
             {
-                ExamTypeMeta etm = _mapper.Map<ExamTypeMeta>(examTypeMetaDto);
+                UpdateExamTypeMeta etm = _mapper.Map<UpdateExamTypeMeta>(examTypeMetaDto);
                 return await _examTypeMetaManagerService.UpdateExamTypeMeta(etm).ConfigureAwait(false);
             }
             catch (Exception ex)
@@ -92,7 +92,7 @@ namespace TB.TestManagerApi.Services
         {
             try
             {
-                ExamTypeSection ets = _mapper.Map<ExamTypeSection>(examTypeSectionDto);
+                UpdateExamTypeSection ets = _mapper.Map<UpdateExamTypeSection>(examTypeSectionDto);
                 return await _examTypeMetaManagerService.UpdateExamTypeSection(ets).ConfigureAwait(false);
             }
             catch (Exception ex)
@@ -105,7 +105,7 @@ namespace TB.TestManagerApi.Services
         {
             try
             {
-                ExamTypeSection ets = _mapper.Map<ExamTypeSection>(examTypeSectionDto);
+                DeactivateExamTypeSection ets = _mapper.Map<DeactivateExamTypeSection>(examTypeSectionDto);
                 return await _examTypeMetaManagerService.DeactivateExamTypeSection(ets).ConfigureAwait(false);
             }
             catch (Exception ex)
@@ -118,7 +118,7 @@ namespace TB.TestManagerApi.Services
         {
             try
             {
-                List<ExamTypeSection> ets = _mapper.Map<List<ExamTypeSection>>(examTypeSectionsDto);
+                List<UpdateExamTypeSection> ets = _mapper.Map<List<UpdateExamTypeSection>>(examTypeSectionsDto);
                 return await _examTypeMetaManagerService.UpdateExamTypeSections(ets).ConfigureAwait(false);
             }
             catch (Exception ex)

@@ -28,7 +28,7 @@ namespace TB.TestManagerApi.Repository
             SetCacheOptions(configuration);
         }
 
-        public async Task<Guid> CreateExamTypeMeta(ExamTypeMeta examTypeMeta)
+        public async Task<Guid> CreateExamTypeMeta(CreateExamTypeMeta examTypeMeta)
         {
             Guid result;
             try
@@ -65,7 +65,7 @@ namespace TB.TestManagerApi.Repository
             }
         }
 
-        public async Task<Guid> UpdateExamTypeMeta(ExamTypeMeta examTypeMeta)
+        public async Task<Guid> UpdateExamTypeMeta(UpdateExamTypeMeta examTypeMeta)
         {
             Guid result;
             try
@@ -98,7 +98,7 @@ namespace TB.TestManagerApi.Repository
                 throw;
             }
         }
-        public async Task<Guid> DeactivateExamTypeMeta(ExamTypeMeta examTypeMeta)
+        public async Task<Guid> DeactivateExamTypeMeta(DeactivateExamTypeMeta examTypeMeta)
         {
             Guid result;
             try
@@ -126,7 +126,7 @@ namespace TB.TestManagerApi.Repository
             }
         }
 
-        public async Task<IEnumerable<Guid>> CreateExamTypeSections(List<ExamTypeSection> examTypeSections)
+        public async Task<IEnumerable<Guid>> CreateExamTypeSections(List<CreateExamTypeSection> examTypeSections)
         {
             List<Guid> results = new List<Guid>();
             try
@@ -158,7 +158,7 @@ namespace TB.TestManagerApi.Repository
             }
         }
 
-        public async Task<IEnumerable<Guid>> UpdateExamTypeSections(List<ExamTypeSection> examTypeSections)
+        public async Task<IEnumerable<Guid>> UpdateExamTypeSections(List<UpdateExamTypeSection> examTypeSections)
         {
             List<Guid> results = new List<Guid>();
             try
@@ -189,7 +189,7 @@ namespace TB.TestManagerApi.Repository
             }
         }
 
-        public async Task<IEnumerable<Guid>> DeactivateExamTypeSections(List<ExamTypeSection> examTypeSections)
+        public async Task<IEnumerable<Guid>> DeactivateExamTypeSections(List<DeactivateExamTypeSection> examTypeSections)
         {
             List<Guid> results = new List<Guid>();
             try

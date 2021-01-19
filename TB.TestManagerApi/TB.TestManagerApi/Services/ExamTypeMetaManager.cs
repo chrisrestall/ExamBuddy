@@ -52,11 +52,11 @@ namespace TB.TestManagerApi.Services
             }
         }
 
-        public async Task<Guid> UpdateExamTypeMeta(ExamTypeMeta examTypeMeta)
+        public async Task<Guid> UpdateExamTypeMeta(UpdateExamTypeMeta updateExamTypeMeta)
         {
             try
             {
-                var result = await _examTypeMetaCommands.UpdateExamTypeMeta(examTypeMeta).ConfigureAwait(false);
+                var result = await _examTypeMetaCommands.UpdateExamTypeMeta(updateExamTypeMeta).ConfigureAwait(false);
                 return result;
             }
             catch (Exception ex)
@@ -65,11 +65,11 @@ namespace TB.TestManagerApi.Services
                 throw;
             }
         }
-        public async Task<Guid> DeactivateExamTypeMeta(ExamTypeMeta examTypeMeta)
+        public async Task<Guid> DeactivateExamTypeMeta(DeactivateExamTypeMeta deactivateExamTypeMeta)
         {
             try
             {
-                var result = await _examTypeMetaCommands.DeactivateExamTypeMeta(examTypeMeta).ConfigureAwait(false);
+                var result = await _examTypeMetaCommands.DeactivateExamTypeMeta(deactivateExamTypeMeta).ConfigureAwait(false);
                 return result;
             }
             catch (Exception ex)
@@ -78,11 +78,11 @@ namespace TB.TestManagerApi.Services
                 throw;
             }
         }
-        public async Task<Guid> CreateExamTypeMeta(ExamTypeMeta examTypeMeta)
+        public async Task<Guid> CreateExamTypeMeta(CreateExamTypeMeta createExamTypeMeta)
         {
             try
             {
-                var result = await _examTypeMetaCommands.CreateExamTypeMeta(examTypeMeta).ConfigureAwait(false);
+                var result = await _examTypeMetaCommands.CreateExamTypeMeta(createExamTypeMeta).ConfigureAwait(false);
                 return result;
             }
             catch (Exception ex)
@@ -123,12 +123,12 @@ namespace TB.TestManagerApi.Services
                 throw;
             }
         }
-        public async Task<Guid> CreateExamTypeSection(ExamTypeSection examTypeSection)
+        public async Task<Guid> CreateExamTypeSection(CreateExamTypeSection createExamTypeSection)
         {
-            List<ExamTypeSection> examTypeSections = new List<ExamTypeSection>();
+            List<CreateExamTypeSection> examTypeSections = new List<CreateExamTypeSection>();
             try
             {
-                examTypeSections.Add(examTypeSection);
+                examTypeSections.Add(createExamTypeSection);
                 var sectionGuid =  await CreateExamTypeSections(examTypeSections).ConfigureAwait(false);
                 return sectionGuid.FirstOrDefault();
             }
@@ -138,9 +138,9 @@ namespace TB.TestManagerApi.Services
                 throw;
             }
         }
-        public async Task<Guid> UpdateExamTypeSection(ExamTypeSection examTypeSection)
+        public async Task<Guid> UpdateExamTypeSection(UpdateExamTypeSection examTypeSection)
         {
-            List<ExamTypeSection> examTypeSections = new List<ExamTypeSection>();
+            List<UpdateExamTypeSection> examTypeSections = new List<UpdateExamTypeSection>();
             try
             {
                 examTypeSections.Add(examTypeSection);
@@ -153,9 +153,9 @@ namespace TB.TestManagerApi.Services
                 throw;
             }
         }
-        public async Task<Guid> DeactivateExamTypeSection(ExamTypeSection examTypeSection)
+        public async Task<Guid> DeactivateExamTypeSection(DeactivateExamTypeSection examTypeSection)
         {
-            List<ExamTypeSection> examTypeSections = new List<ExamTypeSection>();
+            List<DeactivateExamTypeSection> examTypeSections = new List<DeactivateExamTypeSection>();
             try
             {
                 examTypeSections.Add(examTypeSection);
@@ -168,7 +168,7 @@ namespace TB.TestManagerApi.Services
                 throw;
             }
         }
-        public async Task<IEnumerable<Guid>> CreateExamTypeSections(List<ExamTypeSection> examTypeSections)
+        public async Task<IEnumerable<Guid>> CreateExamTypeSections(List<CreateExamTypeSection> examTypeSections)
         {
             try
             {                
@@ -181,7 +181,7 @@ namespace TB.TestManagerApi.Services
                 throw;
             }
         }
-        public async Task<IEnumerable<Guid>> UpdateExamTypeSections(List<ExamTypeSection> examTypeSections)
+        public async Task<IEnumerable<Guid>> UpdateExamTypeSections(List<UpdateExamTypeSection> examTypeSections)
         {
             try
             {

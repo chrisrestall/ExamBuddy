@@ -28,6 +28,8 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Features\ExamQuestion\Models\Deactivate\" />
+    <Folder Include="Features\ExamQuestion\Models\Update\" />
   </ItemGroup>
 
 </Project>
