@@ -8,6 +8,7 @@ namespace TB.TestManagerApi.Services
     public interface IExamStructureManager
     {
         Task<Guid> CreateExamMaster(ExamMaster examMaster);
+        Task<Guid> CreateExamQuestion(CreateExamQuestion createExamQuestion);
         Task<Guid> DeactivateExamMaster(ExamMaster examMaster);
         Task<ExamMaster> FetchExamMasterById(Guid examMasterId, bool activeOnly);
         Task<IEnumerable<ExamMaster>> FetchExamMasterByUserId(string userId, bool activeOnly);

@@ -21,6 +21,9 @@ namespace TB.TestManagerApi.Mapping
             CreateMap<UpdateExamTypeSectionDto, ExamTypeSection>();
             CreateMap<DeactivateExamTypeMetaDto, ExamTypeMeta>();
             CreateMap<DeactivateExamTypeSectionDto, ExamTypeSection>();
+            CreateMap<CreateExamAnswerMasterDto, CreateExamAnswerMaster>();
+            CreateMap<CreateExamQuestionDto, CreateExamQuestion>();
+            CreateMap<CreateExamQuestionMasterDto, CreateExamQuestionMaster>();
             CreateMap<ExamQuestionAnswer, ExamQuestionAnswerDto>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.ExamQuestionAnswerXrefId)); 
             CreateMap<ExamAnswerMaster, ExamAnswerMasterDto>();
