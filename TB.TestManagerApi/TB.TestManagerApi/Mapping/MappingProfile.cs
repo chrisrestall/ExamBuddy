@@ -10,9 +10,9 @@ namespace TB.TestManagerApi.Mapping
             // Add as many of these lines as you need to map your objects
             CreateMap<ExamMaster, ExamMasterDto>();
             CreateMap<ExamMasterDto, ExamMaster>();
-            CreateMap<CreateExamMasterDto, ExamMaster>();
-            CreateMap<UpdateExamMasterDto, ExamMaster>();
-            CreateMap<DeactivateExamMasterDto, ExamMaster>();
+            CreateMap<CreateExamMasterDto, CreateExamMaster>();
+            CreateMap<UpdateExamMasterDto, UpdateExamMaster>();
+            CreateMap<DeactivateExamMasterDto, DeactivateExamMaster>();
             CreateMap<ExamTypeMeta, ExamTypeMetaDto>().ReverseMap();
             CreateMap<ExamTypeSection, ExamTypeSectionDto>().ReverseMap();
             CreateMap<CreateExamTypeMetaDto, ExamTypeMeta>();

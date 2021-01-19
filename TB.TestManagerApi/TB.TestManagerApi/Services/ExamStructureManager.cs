@@ -92,11 +92,11 @@ namespace TB.TestManagerApi.Services
                 throw;
             }
         }
-        public async Task<Guid> CreateExamMaster(ExamMaster examMaster)
+        public async Task<Guid> CreateExamMaster(CreateExamMaster createExamMaster)
         {
             try
             {
-                var result = await _examStructureCommands.CreateExamMaster(examMaster).ConfigureAwait(false);
+                var result = await _examStructureCommands.CreateExamMaster(createExamMaster).ConfigureAwait(false);
                 return result;
             }
             catch (Exception ex)
@@ -105,11 +105,11 @@ namespace TB.TestManagerApi.Services
                 throw;
             }
         }
-        public async Task<Guid> UpdateExamMaster(ExamMaster examMaster)
+        public async Task<Guid> UpdateExamMaster(UpdateExamMaster updateExamMaster)
         {
             try
             {
-                var result = await _examStructureCommands.UpdateExamMaster(examMaster).ConfigureAwait(false);
+                var result = await _examStructureCommands.UpdateExamMaster(updateExamMaster).ConfigureAwait(false);
                 return result;
             }
             catch (Exception ex)
@@ -118,11 +118,11 @@ namespace TB.TestManagerApi.Services
                 throw;
             }
         }
-        public async Task<Guid> DeactivateExamMaster(ExamMaster examMaster)
+        public async Task<Guid> DeactivateExamMaster(DeactivateExamMaster deactivateExamMaster)
         {
             try
             {
-                var result = await _examStructureCommands.DeactivateExamMaster(examMaster).ConfigureAwait(false);
+                var result = await _examStructureCommands.DeactivateExamMaster(deactivateExamMaster).ConfigureAwait(false);
                 return result;
             }
             catch (Exception ex)

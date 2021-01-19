@@ -26,7 +26,7 @@ namespace TB.TestManagerApi.Repository
             SetCacheOptions(configuration);
         }
 
-        public async Task<Guid> CreateExamMaster(ExamMaster examMaster)
+        public async Task<Guid> CreateExamMaster(CreateExamMaster createExamMaster)
         {
             Guid result;
             try
@@ -39,7 +39,7 @@ namespace TB.TestManagerApi.Repository
                         command += "OUTPUT INSERTED.Id ";
                         command += "VALUES (@name, @userId, @testTypeId);";
                         _logger.LogDebug(command);
-                        result = await connection.QuerySingleAsync<Guid>(command, examMaster).ConfigureAwait(false);
+                        result = await connection.QuerySingleAsync<Guid>(command, createExamMaster).ConfigureAwait(false);
 
                         transaction.Complete();
                     }
@@ -54,7 +54,7 @@ namespace TB.TestManagerApi.Repository
             }
         }
 
-        public async Task<Guid> UpdateExamMaster(ExamMaster examMaster)
+        public async Task<Guid> UpdateExamMaster(UpdateExamMaster updateExamMaster)
         {
             Guid result;
             try
@@ -67,8 +67,8 @@ namespace TB.TestManagerApi.Repository
                         command += "WHERE id = @id";
 
                         _logger.LogDebug(command);
-                        await connection.ExecuteAsync(command, examMaster).ConfigureAwait(false);
-                        result = examMaster.Id;
+                        await connection.ExecuteAsync(command, updateExamMaster).ConfigureAwait(false);
+                        result = updateExamMaster.Id;
 
                         transaction.Complete();
                     }
@@ -82,7 +82,7 @@ namespace TB.TestManagerApi.Repository
                 throw;
             }
         }
-        public async Task<Guid> DeactivateExamMaster(ExamMaster examMaster)
+        public async Task<Guid> DeactivateExamMaster(DeactivateExamMaster deactivateExamMaster)
         {
             Guid result;
             try
@@ -95,8 +95,8 @@ namespace TB.TestManagerApi.Repository
                         command += "WHERE id = @id";
 
                         _logger.LogDebug(command);
-                        await connection.ExecuteAsync(command, examMaster).ConfigureAwait(false);
-                        result = examMaster.Id;
+                        await connection.ExecuteAsync(command, deactivateExamMaster).ConfigureAwait(false);
+                        result = deactivateExamMaster.Id;
                         transaction.Complete();
                     }
                 }
