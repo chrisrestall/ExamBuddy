@@ -109,5 +109,121 @@ namespace TB.TestManagerApi.Repository
                 throw;
             }
         }
+
+        public async Task<Guid> CreateExamQuestionMaster(CreateExamQuestion createExamQuestion)
+        {
+            Guid questionMasterResultId;
+            
+            try
+            {
+                using (var transaction = new TransactionScope(TransactionScopeOption.Required, TransactionScopeAsyncFlowOption.Enabled))
+                {
+                    using (var connection = _provider.GetDbConnection())
+                    {
+                        var command = @"INSERT INTO [ExamQuestionMaster] ([question], [testTypeSectionId]) ";
+                        command += "OUTPUT INSERTED.Id ";
+                        command += "VALUES (@question, @examTypeSectionId);";
+                        _logger.LogDebug(command);
+                        questionMasterResultId = await connection.QuerySingleAsync<Guid>(command, createExamQuestion.ExamQuestion).ConfigureAwait(false);
+
+                        foreach (var examAnswer in createExamQuestion.ExamAnswers)
+                        {
+                            Guid examAnswerMasterId = await CreateExamAnswerMaster(examAnswer).ConfigureAwait(false);
+                            Guid examQuestionAnswerXrefId = await CreateExamQuestionAnswerXref(questionMasterResultId, examAnswerMasterId, examAnswer.isCorrect).ConfigureAwait(false);
+                            Guid examQuestion = await CreateExamQuestion(createExamQuestion.ExamMasterId, examQuestionAnswerXrefId).ConfigureAwait(false);
+                        }
+                        transaction.Complete();
+                    }
+                }
+                return questionMasterResultId;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                throw;
+            }
+        }
+
+        public async Task<Guid> CreateExamAnswerMaster(CreateExamAnswerMaster examAnswer)
+        {
+            Guid answerResultId;
+            try
+            {
+                using (var transaction = new TransactionScope(TransactionScopeOption.Required, TransactionScopeAsyncFlowOption.Enabled))
+                {
+                    using (var connection = _provider.GetDbConnection())
+                    {
+                        var command = @"INSERT INTO [ExamAnswerMaster] ([answer]) ";
+                        command += "OUTPUT INSERTED.Id ";
+                        command += "VALUES (@answer);";
+                        _logger.LogDebug(command);
+                        answerResultId = await connection.QuerySingleAsync<Guid>(command, new { examAnswer.Answer }).ConfigureAwait(false);                      
+
+                        transaction.Complete();
+                    }
+                }
+                return answerResultId;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                throw;
+            }
+        }
+
+        public async Task<Guid> CreateExamQuestionAnswerXref(Guid testQuestionId, Guid testAnswerId, bool isCorrect)
+        {
+            Guid questionAnswerXrefResultId;
+            try
+            {
+                using (var transaction = new TransactionScope(TransactionScopeOption.Required, TransactionScopeAsyncFlowOption.Enabled))
+                {
+                    using (var connection = _provider.GetDbConnection())
+                    {
+                        var command = @"INSERT INTO [ExamQuestionAnswerXref] ([testQuestionId], [testAnswerId], [isCorrect]) ";
+                        command += "OUTPUT INSERTED.Id ";
+                        command += "VALUES (@testQuestionId, @testAnswerId, @isCorrect);";
+                        _logger.LogDebug(command);
+                        questionAnswerXrefResultId = await connection.QuerySingleAsync<Guid>(command, new { testQuestionId, testAnswerId, isCorrect }).ConfigureAwait(false);
+
+                        transaction.Complete();
+                    }
+                }
+                return questionAnswerXrefResultId;
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                throw;
+            }
+        }
+        public async Task<Guid> CreateExamQuestion(Guid examMasterId, Guid examQuestionAnswerXrefId)
+        {
+            Guid questionAnswerXrefResultId;
+            try
+            {
+                using (var transaction = new TransactionScope(TransactionScopeOption.Required, TransactionScopeAsyncFlowOption.Enabled))
+                {
+                    using (var connection = _provider.GetDbConnection())
+                    {
+                        var command = @"INSERT INTO [ExamQuestions] ([testMasterId], [testQuestionAnswerXrefId]) ";
+                        command += "OUTPUT INSERTED.Id ";
+                        command += "VALUES (@examMasterId, @examQuestionAnswerXrefId);";
+                        _logger.LogDebug(command);
+                        questionAnswerXrefResultId = await connection.QuerySingleAsync<Guid>(command, new { examMasterId, examQuestionAnswerXrefId }).ConfigureAwait(false);
+
+                        transaction.Complete();
+                    }
+                }
+                return questionAnswerXrefResultId;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                throw;
+            }
+        }
+
     }
 }

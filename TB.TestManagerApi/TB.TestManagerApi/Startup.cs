@@ -43,6 +43,7 @@ namespace TB.TestManagerApi
             services.AddTransient<IExamTypeMetaCommands, ExamTypeMetaCommands>();
             services.AddTransient<IExamStructureQueries, ExamStructureQueries>();
             services.AddTransient<IExamStructureCommands, ExamStructureCommands>();
+            services.AddTransient<IExamQuestionCommandService, ExamQuestionCommandService>();
             services.AddTransient<ISqlServerConnectionProvider, SqlServerConnectionProvider>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
