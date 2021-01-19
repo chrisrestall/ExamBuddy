@@ -25,8 +25,8 @@ namespace TB.TestManagerApi.Services
         {
             try
             {
-                ExamMaster examMaster = _mapper.Map<ExamMaster>(createExamMasterDto);
-                return await _examStructureManagerService.CreateExamMaster(examMaster).ConfigureAwait(false);
+                CreateExamMaster createExamMasterCommand = _mapper.Map<CreateExamMaster>(createExamMasterDto);
+                return await _examStructureManagerService.CreateExamMaster(createExamMasterCommand).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -38,8 +38,8 @@ namespace TB.TestManagerApi.Services
         {
             try
             {
-                ExamMaster examMaster = _mapper.Map<ExamMaster>(updateExamMasterDto);
-                return await _examStructureManagerService.UpdateExamMaster(examMaster).ConfigureAwait(false);
+                UpdateExamMaster updateExamMasterCommand = _mapper.Map<UpdateExamMaster>(updateExamMasterDto);
+                return await _examStructureManagerService.UpdateExamMaster(updateExamMasterCommand).ConfigureAwait(false);
             }
             catch (Exception ex)
             {
@@ -51,8 +51,8 @@ namespace TB.TestManagerApi.Services
         {
             try
             {
-                ExamMaster examMaster = _mapper.Map<ExamMaster>(deactivateExamMasterDto);
-                return await _examStructureManagerService.DeactivateExamMaster(examMaster).ConfigureAwait(false);
+                DeactivateExamMaster deactivateExamMasterCommand = _mapper.Map<DeactivateExamMaster>(deactivateExamMasterDto);
+                return await _examStructureManagerService.DeactivateExamMaster(deactivateExamMasterCommand).ConfigureAwait(false);
             }
             catch (Exception ex)
             {

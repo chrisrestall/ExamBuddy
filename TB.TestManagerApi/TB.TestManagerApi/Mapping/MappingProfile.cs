@@ -10,17 +10,17 @@ namespace TB.TestManagerApi.Mapping
             // Add as many of these lines as you need to map your objects
             CreateMap<ExamMaster, ExamMasterDto>();
             CreateMap<ExamMasterDto, ExamMaster>();
-            CreateMap<CreateExamMasterDto, ExamMaster>();
-            CreateMap<UpdateExamMasterDto, ExamMaster>();
-            CreateMap<DeactivateExamMasterDto, ExamMaster>();
+            CreateMap<CreateExamMasterDto, CreateExamMaster>();
+            CreateMap<UpdateExamMasterDto, UpdateExamMaster>();
+            CreateMap<DeactivateExamMasterDto, DeactivateExamMaster>();
             CreateMap<ExamTypeMeta, ExamTypeMetaDto>().ReverseMap();
             CreateMap<ExamTypeSection, ExamTypeSectionDto>().ReverseMap();
-            CreateMap<CreateExamTypeMetaDto, ExamTypeMeta>();
-            CreateMap<CreateExamTypeSectionDto, ExamTypeSection>();
-            CreateMap<UpdateExamTypeMetaDto, ExamTypeMeta>();
-            CreateMap<UpdateExamTypeSectionDto, ExamTypeSection>();
-            CreateMap<DeactivateExamTypeMetaDto, ExamTypeMeta>();
-            CreateMap<DeactivateExamTypeSectionDto, ExamTypeSection>();
+            CreateMap<CreateExamTypeMetaDto, CreateExamTypeMeta>();
+            CreateMap<CreateExamTypeSectionDto, CreateExamTypeSection>();
+            CreateMap<UpdateExamTypeMetaDto, UpdateExamTypeMeta>();
+            CreateMap<UpdateExamTypeSectionDto, UpdateExamTypeSection>();
+            CreateMap<DeactivateExamTypeMetaDto, DeactivateExamTypeMeta>();
+            CreateMap<DeactivateExamTypeSectionDto, DeactivateExamTypeSection>();
             CreateMap<CreateExamAnswerMasterDto, CreateExamAnswerMaster>();
             CreateMap<CreateExamQuestionDto, CreateExamQuestion>();
             CreateMap<CreateExamQuestionMasterDto, CreateExamQuestionMaster>();

@@ -7,11 +7,11 @@ namespace TB.TestManagerApi.Repository
 {
     public interface IExamTypeMetaCommands
     {
-        Task<Guid> CreateExamTypeMeta(ExamTypeMeta examTypeMetaDto);
-        Task<IEnumerable<Guid>> CreateExamTypeSections(List<ExamTypeSection> examTypeSections);
-        Task<Guid> UpdateExamTypeMeta(ExamTypeMeta examTypeMetaDto);
-        Task<IEnumerable<Guid>> UpdateExamTypeSections(List<ExamTypeSection> examTypeSections);
-        Task<Guid> DeactivateExamTypeMeta(ExamTypeMeta examTypeMeta);
-        Task<IEnumerable<Guid>> DeactivateExamTypeSections(List<ExamTypeSection> examTypeSections);
+        Task<Guid> CreateExamTypeMeta(CreateExamTypeMeta examTypeMetaDto);
+        Task<IEnumerable<Guid>> CreateExamTypeSections(List<CreateExamTypeSection> examTypeSections);
+        Task<Guid> UpdateExamTypeMeta(UpdateExamTypeMeta examTypeMetaDto);
+        Task<IEnumerable<Guid>> UpdateExamTypeSections(List<UpdateExamTypeSection> examTypeSections);
+        Task<Guid> DeactivateExamTypeMeta(DeactivateExamTypeMeta examTypeMeta);
+        Task<IEnumerable<Guid>> DeactivateExamTypeSections(List<DeactivateExamTypeSection> examTypeSections);
     }
 }
