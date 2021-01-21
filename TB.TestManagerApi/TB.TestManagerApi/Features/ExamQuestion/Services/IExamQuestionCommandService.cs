@@ -6,6 +6,7 @@ namespace TB.TestManagerApi.Services
 {
     public interface IExamQuestionCommandService
     {
+        Task<Guid> CreateExamAnswerAsync(CreateExamAnswerDto createExamAnswerDto);
         Task<Guid> CreateExamQuestionAsync(CreateExamQuestionDto createExamQuestionDto);
     }
 }

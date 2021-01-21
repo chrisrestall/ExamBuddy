@@ -3,16 +3,14 @@ using System.Collections.Generic;
 
 namespace TB.TestManagerApi.Domain
 {
-    public class CreateExamQuestionDto
+    public class CreateExamAnswerDto
     {
-        public CreateExamQuestionDto()
+        public CreateExamAnswerDto()
         {
             ExamAnswers = new List<CreateExamAnswerMasterDto>();
         }
         public Guid ExamMasterId { get; set; }
-
-        public CreateExamQuestionMasterDto ExamQuestion { get; set; }
-
-        public List<CreateExamAnswerMasterDto> ExamAnswers {get;set;}
+        public Guid ExamQuestionMasterId { get; set; }
+        public List<CreateExamAnswerMasterDto> ExamAnswers { get; set; }
     }
 }

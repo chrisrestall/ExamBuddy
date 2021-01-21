@@ -125,13 +125,13 @@ namespace TB.TestManagerApi.Repository
                         command += "VALUES (@question, @examTypeSectionId);";
                         _logger.LogDebug(command);
                         questionMasterResultId = await connection.QuerySingleAsync<Guid>(command, createExamQuestion.ExamQuestion).ConfigureAwait(false);
-
-                        foreach (var examAnswer in createExamQuestion.ExamAnswers)
+                        var createExamAnswer = new CreateExamAnswer()
                         {
-                            Guid examAnswerMasterId = await CreateExamAnswerMaster(examAnswer).ConfigureAwait(false);
-                            Guid examQuestionAnswerXrefId = await CreateExamQuestionAnswerXref(questionMasterResultId, examAnswerMasterId, examAnswer.isCorrect).ConfigureAwait(false);
-                            Guid examQuestion = await CreateExamQuestion(createExamQuestion.ExamMasterId, examQuestionAnswerXrefId).ConfigureAwait(false);
-                        }
+                            ExamQuestionMasterId = questionMasterResultId,
+                            ExamMasterId = createExamQuestion.ExamMasterId,
+                            ExamAnswers = createExamQuestion.ExamAnswers
+                        };
+                        await CreateExamAnswer(createExamAnswer).ConfigureAwait(false);
                         transaction.Complete();
                     }
                 }
@@ -144,6 +144,32 @@ namespace TB.TestManagerApi.Repository
             }
         }
 
+
+        public async Task<Guid> CreateExamAnswer(CreateExamAnswer createExamAnswer)
+        {         
+            try
+            {
+                using (var transaction = new TransactionScope(TransactionScopeOption.Required, TransactionScopeAsyncFlowOption.Enabled))
+                {
+                    using (var connection = _provider.GetDbConnection())
+                    {
+                        foreach (var examAnswer in createExamAnswer.ExamAnswers)
+                        {
+                            Guid examAnswerMasterId = await CreateExamAnswerMaster(examAnswer).ConfigureAwait(false);
+                            Guid examQuestionAnswerXrefId = await CreateExamQuestionAnswerXref(createExamAnswer.ExamQuestionMasterId, examAnswerMasterId, examAnswer.isCorrect).ConfigureAwait(false);
+                            Guid examQuestion = await CreateExamQuestion(createExamAnswer.ExamMasterId, examQuestionAnswerXrefId).ConfigureAwait(false);
+                        }
+                        transaction.Complete();
+                    }
+                }
+                return createExamAnswer.ExamQuestionMasterId;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                throw;
+            }
+        }
         public async Task<Guid> CreateExamAnswerMaster(CreateExamAnswerMaster examAnswer)
         {
             Guid answerResultId;

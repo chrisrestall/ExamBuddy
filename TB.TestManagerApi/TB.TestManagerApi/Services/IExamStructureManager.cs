@@ -7,6 +7,7 @@ namespace TB.TestManagerApi.Services
 {
     public interface IExamStructureManager
     {
+        Task<Guid> CreateExamAnswer(CreateExamAnswer createExamAnswer);
         Task<Guid> CreateExamMaster(CreateExamMaster examMaster);
         Task<Guid> CreateExamQuestion(CreateExamQuestion createExamQuestion);
         Task<Guid> DeactivateExamMaster(DeactivateExamMaster examMaster);
