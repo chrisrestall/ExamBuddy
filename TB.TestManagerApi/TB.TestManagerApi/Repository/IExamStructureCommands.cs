@@ -14,5 +14,6 @@ namespace TB.TestManagerApi.Repository
         Task<Guid> CreateExamQuestionMaster(CreateExamQuestion createExamQuestion);
         Task<Guid> DeactivateExamMaster(DeactivateExamMaster deactivateExamMaster);
         Task<Guid> UpdateExamMaster(UpdateExamMaster updateExamMaster);
+        Task<Guid> UpdateExamQuestionMaster(UpdateExamQuestionMaster updateExamQuestionMaster);
     }
 }

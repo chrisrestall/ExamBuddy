@@ -45,5 +45,19 @@ namespace TB.TestManagerApi.Services
                 throw;
             }
         }
+
+        public async Task<Guid> UpdateExamQuestionMasterAsync(UpdateExamQuestionMasterDto updateExamQuestionMasterDto)
+        {
+            try
+            {
+                UpdateExamQuestionMaster ueqm = _mapper.Map<UpdateExamQuestionMaster>(updateExamQuestionMasterDto);
+                return await _examStructureManagerService.UpdateExamQuestion(ueqm).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                throw;
+            }
+        }
     }
 }

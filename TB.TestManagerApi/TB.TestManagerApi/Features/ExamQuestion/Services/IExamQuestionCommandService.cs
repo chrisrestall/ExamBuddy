@@ -8,5 +8,6 @@ namespace TB.TestManagerApi.Services
     {
         Task<Guid> CreateExamAnswerAsync(CreateExamAnswerDto createExamAnswerDto);
         Task<Guid> CreateExamQuestionAsync(CreateExamQuestionDto createExamQuestionDto);
+        Task<Guid> UpdateExamQuestionMasterAsync(UpdateExamQuestionMasterDto updateExamQuestionMasterDto);
     }
 }

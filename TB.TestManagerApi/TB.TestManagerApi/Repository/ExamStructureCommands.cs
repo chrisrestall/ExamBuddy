@@ -144,7 +144,6 @@ namespace TB.TestManagerApi.Repository
             }
         }
 
-
         public async Task<Guid> CreateExamAnswer(CreateExamAnswer createExamAnswer)
         {         
             try
@@ -243,6 +242,35 @@ namespace TB.TestManagerApi.Repository
                     }
                 }
                 return questionAnswerXrefResultId;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                throw;
+            }
+        }
+
+        public async Task<Guid> UpdateExamQuestionMaster(UpdateExamQuestionMaster updateExamQuestionMaster)
+        {
+            Guid result;
+            try
+            {
+                using (var transaction = new TransactionScope(TransactionScopeOption.Required, TransactionScopeAsyncFlowOption.Enabled))
+                {
+                    using (var connection = _provider.GetDbConnection())
+                    {
+                        var command = @"UPDATE [ExamQuestionMaster] SET [question] = @question, [testTypeSectionId] = @examTypeSectionId, [editDate] = @editDate ";
+                        command += "WHERE id = @id";
+
+                        _logger.LogDebug(command);
+                        await connection.ExecuteAsync(command, updateExamQuestionMaster).ConfigureAwait(false);
+                        result = updateExamQuestionMaster.Id;
+
+                        transaction.Complete();
+                    }
+                }
+                return result;
+
             }
             catch (Exception ex)
             {

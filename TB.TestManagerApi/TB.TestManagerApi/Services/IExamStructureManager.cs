@@ -19,5 +19,6 @@ namespace TB.TestManagerApi.Services
         Task<ExamQuestion> FetchExamQuestionById(Guid examQuestionId, bool activeOnly);
         Task<IEnumerable<ExamQuestion>> FetchExamQuestionsByExamMasterId(Guid examMasterId, bool activeOnly);
         Task<Guid> UpdateExamMaster(UpdateExamMaster examMaster);
+        Task<Guid> UpdateExamQuestion(UpdateExamQuestionMaster updateExamQuestionMaster);
     }
 }
