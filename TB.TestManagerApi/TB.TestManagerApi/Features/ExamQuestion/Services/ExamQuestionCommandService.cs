@@ -31,6 +31,19 @@ namespace TB.TestManagerApi.Services
                 _logger.LogError(ex.ToString());
                 throw;
             }
-        }        
+        }
+        public async Task<Guid> CreateExamAnswerAsync(CreateExamAnswerDto createExamAnswerDto)
+        {
+            try
+            {
+                CreateExamAnswer cea = _mapper.Map<CreateExamAnswer>(createExamAnswerDto);
+                return await _examStructureManagerService.CreateExamAnswer(cea).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                throw;
+            }
+        }
     }
 }

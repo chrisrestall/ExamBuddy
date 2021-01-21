@@ -13,5 +13,6 @@
         public const string ExamQuestionMasterUri = "api/examquestion/questionmaster";
         public const string ExamQuestionExamMasterUri = "api/examquestion/exammaster";
         public const string ExamQuestionExamQuestionUri = "api/examquestion/question";
+        public const string ExamQuestionExamAnswerUri = "api/examquestion/answer";
     }
 }

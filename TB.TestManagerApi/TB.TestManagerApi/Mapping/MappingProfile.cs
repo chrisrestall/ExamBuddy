@@ -24,6 +24,7 @@ namespace TB.TestManagerApi.Mapping
             CreateMap<CreateExamAnswerMasterDto, CreateExamAnswerMaster>();
             CreateMap<CreateExamQuestionDto, CreateExamQuestion>();
             CreateMap<CreateExamQuestionMasterDto, CreateExamQuestionMaster>();
+            CreateMap<CreateExamAnswerDto, CreateExamAnswer>();
             CreateMap<ExamQuestionAnswer, ExamQuestionAnswerDto>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.ExamQuestionAnswerXrefId)); 
             CreateMap<ExamAnswerMaster, ExamAnswerMasterDto>();

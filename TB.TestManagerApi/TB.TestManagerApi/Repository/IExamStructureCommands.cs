@@ -6,6 +6,7 @@ namespace TB.TestManagerApi.Repository
 {
     public interface IExamStructureCommands
     {
+        Task<Guid> CreateExamAnswer(CreateExamAnswer createExamAnswer);
         Task<Guid> CreateExamAnswerMaster(CreateExamAnswerMaster examAnswer);
         Task<Guid> CreateExamMaster(CreateExamMaster createExamMaster);
         Task<Guid> CreateExamQuestion(Guid examMasterId, Guid examQuestionAnswerXrefId);
