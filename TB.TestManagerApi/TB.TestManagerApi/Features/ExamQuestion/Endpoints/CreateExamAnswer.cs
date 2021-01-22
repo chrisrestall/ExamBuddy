@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using TB.TestManagerApi.Domain;
 using TB.TestManagerApi.Services;
 
-namespace TB.TestManagerApi.Features.ExamMeta.Endpoints
+namespace TB.TestManagerApi.Features.ExamQuestion.Endpoints
 {
     [Route(Routes.ExamQuestionExamAnswerUri)]
     public class CreateExamAnswer : BaseAsyncEndpoint<CreateExamAnswerDto, Guid>
