@@ -279,5 +279,65 @@ namespace TB.TestManagerApi.Repository
             }
         }
 
+        public async Task<Guid> UpdateExamAnswerMaster(UpdateExamAnswerMaster updateExamAnswerMaster)
+        {
+            Guid result;
+            try
+            {
+                using (var transaction = new TransactionScope(TransactionScopeOption.Required, TransactionScopeAsyncFlowOption.Enabled))
+                {
+                    using (var connection = _provider.GetDbConnection())
+                    {
+                        var command = @"UPDATE [ExamAnswerMaster] SET [answer] = @answer, [editDate] = @editDate ";
+                        command += "WHERE id = @id";
+
+                        _logger.LogDebug(command);
+                        await connection.ExecuteAsync(command, updateExamAnswerMaster).ConfigureAwait(false);
+                        result = updateExamAnswerMaster.Id;
+
+                        await UpdateExamAnswerQuestionXrefCorrect(updateExamAnswerMaster.ExamAnswerQuestionXrefCorrect).ConfigureAwait(false);
+
+                        transaction.Complete();
+                    }
+                }
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                throw;
+            }
+        }
+
+        public async Task<Guid> UpdateExamAnswerQuestionXrefCorrect(UpdateExamAnswerQuestionXrefCorrect updateExamAnswerQuestionXrefCorrect)
+        {
+            Guid result;
+            try
+            {
+                using (var transaction = new TransactionScope(TransactionScopeOption.Required, TransactionScopeAsyncFlowOption.Enabled))
+                {
+                    using (var connection = _provider.GetDbConnection())
+                    {      
+                        var command = @"UPDATE [ExamQuestionAnswerXref] SET [isCorrect] = @isCorrect ";
+                        command += "WHERE id = @id";
+
+                        _logger.LogDebug(command);
+                        await connection.ExecuteAsync(command, updateExamAnswerQuestionXrefCorrect).ConfigureAwait(false);
+                        result = updateExamAnswerQuestionXrefCorrect.Id;
+
+                        transaction.Complete();
+                    }
+                }
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                throw;
+            }
+        }
+
     }
 }

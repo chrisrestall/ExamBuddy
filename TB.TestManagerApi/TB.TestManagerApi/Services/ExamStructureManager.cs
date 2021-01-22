@@ -106,6 +106,20 @@ namespace TB.TestManagerApi.Services
                 throw;
             }
         }
+
+        public async Task<Guid> UpdateExamAnswer(UpdateExamAnswerMaster updateExamAnswerMaster)
+        {
+            try
+            {
+                var result = await _examStructureCommands.UpdateExamAnswerMaster(updateExamAnswerMaster).ConfigureAwait(false);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                throw;
+            }
+        }
         public async Task<Guid> CreateExamAnswer(CreateExamAnswer createExamAnswer)
         {
             try

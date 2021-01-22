@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using TB.TestManagerApi.Domain;
 using TB.TestManagerApi.Services;
 
-namespace TB.TestManagerApi.Features.ExamMaster.Endpoints
+namespace TB.TestManagerApi.Features.ExamQuestion.Endpoints
 {
 
     [Route(Routes.ExamQuestionExamMasterUri)]

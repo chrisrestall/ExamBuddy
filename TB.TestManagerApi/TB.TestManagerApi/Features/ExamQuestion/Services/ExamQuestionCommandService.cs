@@ -59,5 +59,19 @@ namespace TB.TestManagerApi.Services
                 throw;
             }
         }
+
+        public async Task<Guid> UpdateExamAnswerMasterAsync(UpdateExamAnswerMasterDto updateExamAnswerMasterDto)
+        {
+            try
+            {
+                UpdateExamAnswerMaster uea = _mapper.Map<UpdateExamAnswerMaster>(updateExamAnswerMasterDto);
+                return await _examStructureManagerService.UpdateExamAnswer(uea).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                throw;
+            }
+        }
     }
 }

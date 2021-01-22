@@ -13,6 +13,8 @@ namespace TB.TestManagerApi.Repository
         Task<Guid> CreateExamQuestionAnswerXref(Guid testQuestionId, Guid testAnswerId, bool isCorrect);
         Task<Guid> CreateExamQuestionMaster(CreateExamQuestion createExamQuestion);
         Task<Guid> DeactivateExamMaster(DeactivateExamMaster deactivateExamMaster);
+        Task<Guid> UpdateExamAnswerMaster(UpdateExamAnswerMaster updateExamAnswerMaster);
+        Task<Guid> UpdateExamAnswerQuestionXrefCorrect(UpdateExamAnswerQuestionXrefCorrect updateExamAnswerQuestionXrefCorrect);
         Task<Guid> UpdateExamMaster(UpdateExamMaster updateExamMaster);
         Task<Guid> UpdateExamQuestionMaster(UpdateExamQuestionMaster updateExamQuestionMaster);
     }

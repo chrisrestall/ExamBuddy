@@ -14,14 +14,14 @@ using TB.TestManagerApi.Services;
 
 namespace TB.TestManagerApi.Features.ExamQuestion.Endpoints
 {
-    [Route(Routes.ExamQuestionExamQuestionUri)]
-    public class UpdateExamQuestionMaster : BaseAsyncEndpoint<UpdateExamQuestionMasterDto, Guid>
+    [Route(Routes.ExamQuestionExamAnswerUri)]
+    public class UpdateExamAnswerMaster : BaseAsyncEndpoint<UpdateExamAnswerMasterDto, Guid>
     {
 
         private readonly IExamQuestionCommandService _examService;
-        private readonly ILogger<UpdateExamQuestionMaster> _logger;
+        private readonly ILogger<UpdateExamAnswerMaster> _logger;
 
-        public UpdateExamQuestionMaster(ILogger<UpdateExamQuestionMaster> logger, IExamQuestionCommandService examService)
+        public UpdateExamAnswerMaster(ILogger<UpdateExamAnswerMaster> logger, IExamQuestionCommandService examService)
         {
             _logger = logger;
             _examService = examService;
@@ -34,23 +34,23 @@ namespace TB.TestManagerApi.Features.ExamQuestion.Endpoints
         [SwaggerResponse((int)HttpStatusCode.BadRequest)]
         [SwaggerResponse((int)HttpStatusCode.InternalServerError)]
         [SwaggerOperation(
-            Summary = "Updates an ExamQuestion",
-            Description = "Updates an ExamQuestion in the database using Dapper",
-            OperationId = nameof(UpdateExamQuestionMaster),
-            Tags = new[] { nameof(UpdateExamQuestionMaster) }
+            Summary = "Updates an ExamAnswer",
+            Description = "Updates an ExamAnswer in the database using Dapper",
+            OperationId = nameof(UpdateExamAnswerMaster),
+            Tags = new[] { nameof(UpdateExamAnswerMaster) }
         )]
-        public override async Task<ActionResult<Guid>> HandleAsync([FromBody] UpdateExamQuestionMasterDto updateExamQuestionMasterDto, CancellationToken cancellationToken = default)
+        public override async Task<ActionResult<Guid>> HandleAsync([FromBody] UpdateExamAnswerMasterDto updateExamAnswerMasterDto, CancellationToken cancellationToken = default)
         {
             try
             {
-                if (string.IsNullOrEmpty(updateExamQuestionMasterDto.Question) || updateExamQuestionMasterDto.ExamTypeSectionId == default || updateExamQuestionMasterDto.Id == default)
+                if (string.IsNullOrEmpty(updateExamAnswerMasterDto.Answer ) || updateExamAnswerMasterDto.Id == default || updateExamAnswerMasterDto.ExamAnswerQuestionXrefCorrect.Id == default)
                 {
-                    _logger.LogWarning("updateExamQuestionMasterDto is Missing a question, ExamTypeSectionId or id");
+                    _logger.LogWarning("updateExamAnswerMasterDto is Missing a answer or id");
                     return BadRequest();
                 }
 
-            
-                return Ok(await _examService.UpdateExamQuestionMasterAsync(updateExamQuestionMasterDto));
+
+                return Ok(await _examService.UpdateExamAnswerMasterAsync(updateExamAnswerMasterDto));
             }
             catch (Exception ex)
             {

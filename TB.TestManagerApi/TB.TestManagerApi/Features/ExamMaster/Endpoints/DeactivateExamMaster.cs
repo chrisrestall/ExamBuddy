@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using TB.TestManagerApi.Domain;
 using TB.TestManagerApi.Services;
 
-namespace TB.TestManagerApi.Features.ExamMeta.Endpoints
+namespace TB.TestManagerApi.Features.ExamMaster.Endpoints
 {
     [Route(Routes.ExamMasterUri)]
     public class DeactivateExamMaster : BaseAsyncEndpoint<DeactivateExamMasterDto, Guid>
