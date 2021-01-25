@@ -7,7 +7,7 @@ namespace TB.TestManagerApi.Services
     public interface IExamMasterCommandService
     {
         Task<Guid> CreateExamMasterAsync(CreateExamMasterDto createExamMasterDto);
-        Task<Guid> DeactivateExamTypeMetaAsync(DeactivateExamMasterDto deactivateExamMasterDto);
+        Task<Guid> DeactivateExamMasterAsync(DeactivateExamMasterDto deactivateExamMasterDto);
         Task<Guid> UpdateExamMasterAsync(UpdateExamMasterDto updateExamMasterDto);
     }
 }

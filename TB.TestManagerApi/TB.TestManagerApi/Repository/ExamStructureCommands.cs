@@ -339,5 +339,59 @@ namespace TB.TestManagerApi.Repository
             }
         }
 
+        public async Task<Guid> DeactivateQuestionMaster(DeactivateQuestionMaster deactivateQuestionMaster)
+        {
+            Guid result;
+            try
+            {
+                using (var transaction = new TransactionScope(TransactionScopeOption.Required, TransactionScopeAsyncFlowOption.Enabled))
+                {
+                    using (var connection = _provider.GetDbConnection())
+                    {
+                        var command = @"UPDATE [ExamQuestionMaster] SET [active] = 0, [editDate] = @editDate ";
+                        command += "WHERE id = @id";
+
+                        _logger.LogDebug(command);
+                        await connection.ExecuteAsync(command, deactivateQuestionMaster).ConfigureAwait(false);
+                        result = deactivateQuestionMaster.Id;
+                        transaction.Complete();
+                    }
+                }
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                throw;
+            }
+        }
+        public async Task<Guid> DeactivateAnswerMaster(DeactivateAnswerMaster deactivateAnswerMaster)
+        {
+            Guid result;
+            try
+            {
+                using (var transaction = new TransactionScope(TransactionScopeOption.Required, TransactionScopeAsyncFlowOption.Enabled))
+                {
+                    using (var connection = _provider.GetDbConnection())
+                    {
+                        var command = @"UPDATE [ExamAnswerMaster] SET [active] = 0, [editDate] = @editDate ";
+                        command += "WHERE id = @id";
+
+                        _logger.LogDebug(command);
+                        await connection.ExecuteAsync(command, deactivateAnswerMaster).ConfigureAwait(false);
+                        result = deactivateAnswerMaster.Id;
+                        transaction.Complete();
+                    }
+                }
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                throw;
+            }
+        }
     }
 }

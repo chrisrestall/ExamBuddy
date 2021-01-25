@@ -10,7 +10,9 @@ namespace TB.TestManagerApi.Services
         Task<Guid> CreateExamAnswer(CreateExamAnswer createExamAnswer);
         Task<Guid> CreateExamMaster(CreateExamMaster examMaster);
         Task<Guid> CreateExamQuestion(CreateExamQuestion createExamQuestion);
+        Task<Guid> DeactivateAnswerMaster(DeactivateAnswerMaster deactivateAnswerMaster);
         Task<Guid> DeactivateExamMaster(DeactivateExamMaster examMaster);
+        Task<Guid> DeactivateQuestionMaster(DeactivateQuestionMaster deactivateQuestionMaster);
         Task<ExamMaster> FetchExamMasterById(Guid examMasterId, bool activeOnly);
         Task<IEnumerable<ExamMaster>> FetchExamMasterByUserId(string userId, bool activeOnly);
         Task<IEnumerable<ExamMaster>> FetchExamMasters(bool activeOnly);
