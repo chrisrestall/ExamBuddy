@@ -47,7 +47,7 @@ namespace TB.TestManagerApi.Services
                 throw;
             }
         }
-        public async Task<Guid> DeactivateExamTypeMetaAsync(DeactivateExamMasterDto deactivateExamMasterDto)
+        public async Task<Guid> DeactivateExamMasterAsync(DeactivateExamMasterDto deactivateExamMasterDto)
         {
             try
             {

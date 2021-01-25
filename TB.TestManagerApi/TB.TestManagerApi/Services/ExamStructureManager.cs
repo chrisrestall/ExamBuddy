@@ -173,6 +173,35 @@ namespace TB.TestManagerApi.Services
             }
         }
 
+        public async Task<Guid> DeactivateQuestionMaster(DeactivateQuestionMaster deactivateQuestionMaster)
+        {
+            try
+            {
+                var result = await _examStructureCommands.DeactivateQuestionMaster(deactivateQuestionMaster).ConfigureAwait(false);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                throw;
+            }
+        }
+
+        public async Task<Guid> DeactivateAnswerMaster(DeactivateAnswerMaster deactivateAnswerMaster)
+        {
+            try
+            {
+                var result = await _examStructureCommands.DeactivateAnswerMaster(deactivateAnswerMaster).ConfigureAwait(false);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                throw;
+            }
+        }
+
+
         public async Task<IEnumerable<ExamQuestion>> FetchExamQuestionAnswersByQuestionMasterId(Guid examQuestionMasterId, bool activeOnly)
         {
             try

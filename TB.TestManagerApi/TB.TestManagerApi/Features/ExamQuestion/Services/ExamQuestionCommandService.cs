@@ -73,5 +73,33 @@ namespace TB.TestManagerApi.Services
                 throw;
             }
         }
+
+        public async Task<Guid> DeactivateQuestionMasterAsync(DeactivateQuestionMasterDto deactivateQuestionMasterDto)
+        {
+            try
+            {
+                DeactivateQuestionMaster deactivateQuestionMasterCommand = _mapper.Map<DeactivateQuestionMaster>(deactivateQuestionMasterDto);
+                return await _examStructureManagerService.DeactivateQuestionMaster(deactivateQuestionMasterCommand).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                throw;
+            }
+        }
+
+        public async Task<Guid> DeactivateAnswerMasterAsync(DeactivateAnswerMasterDto deactivateAnswerMasterDto)
+        {
+            try
+            {
+                DeactivateAnswerMaster deactivateAnswerMasterCommand = _mapper.Map<DeactivateAnswerMaster>(deactivateAnswerMasterDto);
+                return await _examStructureManagerService.DeactivateAnswerMaster(deactivateAnswerMasterCommand).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.ToString());
+                throw;
+            }
+        }
     }
 }

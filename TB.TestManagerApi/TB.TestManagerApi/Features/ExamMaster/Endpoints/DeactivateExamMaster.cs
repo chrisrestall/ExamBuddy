@@ -46,7 +46,7 @@ namespace TB.TestManagerApi.Features.ExamMaster.Endpoints
                     return BadRequest();
                 }
 
-                return Ok(await _examService.DeactivateExamTypeMetaAsync(deactivateExamMasterDto));
+                return Ok(await _examService.DeactivateExamMasterAsync(deactivateExamMasterDto));
             }
             catch (Exception ex)
             {
